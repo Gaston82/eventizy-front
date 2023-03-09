@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Eventizi",
-    "slug": "Eventizi",
+    "slug": "eventizi",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -25,6 +23,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7f01caa1-4a80-4c99-b586-85a119350f61"
+      }
+    },
+    "owner": "gaston82",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/7f01caa1-4a80-4c99-b586-85a119350f61"
     }
   }
 }
