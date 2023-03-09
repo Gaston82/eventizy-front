@@ -1,19 +1,21 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { type UserLoginStructure } from "../../../types";
+import { type User, type UserState } from "../../../types";
 
-const initialState: UserLoginStructure = {
+const initialState: UserState = {
+  email: "",
+  id: "",
   token: "",
-  username: "",
   isLogged: false,
 };
+
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     loginUser: (
-      currentState: UserLoginStructure,
-      action: PayloadAction<UserLoginStructure>
-    ): UserLoginStructure => ({
+      currentState: UserState,
+      action: PayloadAction<User>
+    ): UserState => ({
       ...currentState,
       ...action.payload,
       isLogged: true,
