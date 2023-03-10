@@ -16,9 +16,9 @@ const useUser = () => {
   const loginUser = async (userInfo: UserCredentials) => {
     const response = await axios.post(`${REACT_APP_URL}/users/login`, userInfo);
 
-    const { token } = response.data as LoginResponse;
-    const { id, username }: CustomTokenPayload = decodeToken(token);
+    const { token } = (await response.data) as LoginResponse;
 
+    const { id, username }: CustomTokenPayload = await decodeToken(token);
     const userLogged: User = {
       id,
       token,
