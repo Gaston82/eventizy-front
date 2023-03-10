@@ -24,7 +24,6 @@ const useUser = () => {
       token,
       username,
     };
-
     dispatch(loginUserActionCreator(userLogged));
 
     await AsyncStorage.setItem("token", token);
