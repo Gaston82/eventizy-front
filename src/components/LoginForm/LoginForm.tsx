@@ -35,9 +35,13 @@ const LoginForm = (): JSX.Element => {
 
   return (
     <SafeAreaView style={LoginFormStyles.container}>
-      <Text style={LoginFormStyles.title}>Login</Text>
+      <Text style={LoginFormStyles.title} testID={"Login"}>
+        Login
+      </Text>
       <View>
-        <Text style={LoginFormStyles.label}>Username</Text>
+        <Text style={LoginFormStyles.label} testID="username">
+          Username
+        </Text>
         <TextInput
           style={LoginFormStyles.input}
           onChangeText={handleUsername}
@@ -47,7 +51,9 @@ const LoginForm = (): JSX.Element => {
         />
       </View>
       <View>
-        <Text style={LoginFormStyles.label}>Password</Text>
+        <Text style={LoginFormStyles.label} testID="password">
+          Password
+        </Text>
         <TextInput
           style={LoginFormStyles.input}
           onChangeText={handlePassword}
