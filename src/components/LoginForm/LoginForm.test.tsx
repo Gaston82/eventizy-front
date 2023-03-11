@@ -1,5 +1,5 @@
 import React from "react";
-import { screen } from "@testing-library/react-native";
+import { fireEvent, screen } from "@testing-library/react-native";
 import LoginForm from "./LoginForm";
 import renderWithProviders from "../../utils/renderWithProviders";
 
@@ -15,6 +15,11 @@ jest.mock("../../hooks/useUser/useUser", () => () => ({
 }));
 
 describe("Given the LoginForm component", () => {
+  const mockUser = {
+    username: "pepe",
+    password: "usertest202301",
+  };
+
   describe("When it's rendered ", () => {
     test("Then it should show a title with the text 'Login'", async () => {
       const expectedTitle = "Login";
@@ -25,16 +30,44 @@ describe("Given the LoginForm component", () => {
       expect(title).toBeOnTheScreen();
     });
 
-    test("Then it should show an input with the text 'username' and another with the text password", async () => {
+    test("Then it should show an input with the text 'username',another with the text password, and a button with 'Log in' text", async () => {
       const labelUsername = "username";
       const labelPassword = "password";
+      const buttonText = "Log in";
 
       renderWithProviders(<LoginForm />);
 
       const usernameLabelText = await screen.getByTestId(labelUsername);
       const passwordLabelText = await screen.getByTestId(labelPassword);
+      const button = await screen.getByText(buttonText);
 
       expect(usernameLabelText).toBeOnTheScreen();
+      expect(passwordLabelText).toBeOnTheScreen();
+      expect(button).toBeOnTheScreen();
+    });
+  });
+
+  describe("When a user fills the username field and the password field and press the login button", () => {
+    test("Then the input should show the text entered by the user and the loginUser function should be call", async () => {
+      const labelUsername = "username";
+      const labelPassword = "password";
+      const buttonText = "Log in";
+
+      renderWithProviders(<LoginForm />);
+
+      const usernameLabelText = await screen.getByTestId(labelUsername);
+      const passwordLabelText = await screen.getByTestId(labelPassword);
+      const button = await screen.getByText(buttonText);
+      fireEvent.changeText(usernameLabelText, mockUser.username);
+      fireEvent.changeText(passwordLabelText, mockUser.password);
+      fireEvent.press(button, "button");
+
+      expect(usernameLabelText.props.value).toBe(mockUser.username);
+      expect(passwordLabelText.props.value).toBe(mockUser.password);
+      expect(mockedLoginUser).toHaveBeenCalledWith({
+        username: mockUser.username,
+        password: mockUser.password,
+      });
     });
   });
 });
