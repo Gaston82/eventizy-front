@@ -6,9 +6,7 @@ import { View } from "react-native";
 
 const App = (): JSX.Element => (
   <Provider store={store}>
-    <View>
-      <LoginForm />
-    </View>
+    <LoginForm />
   </Provider>
 );
 
