@@ -13,8 +13,15 @@ const uiSlice = createSlice({
       ...currentState,
       isLoading: true,
     }),
+    unsetIsLoading: (currentState: UiStructure) => ({
+      ...currentState,
+      isLoading: false,
+    }),
   },
 });
 
 export const uiReducer = uiSlice.reducer;
-export const { setIsLoading: setIsLoadingActionCreator } = uiSlice.actions;
+export const {
+  setIsLoading: setIsLoadingActionCreator,
+  unsetIsLoading: unsetIsLoadingActionCreator,
+} = uiSlice.actions;
