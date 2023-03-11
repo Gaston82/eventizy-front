@@ -10,10 +10,15 @@ import {
   type CustomTokenPayload,
   type User,
 } from "../../types";
+import {
+  setIsLoadingActionCreator,
+  unsetIsLoadingActionCreator,
+} from "../../store/features/ui/uiSlice";
 
 const useUser = () => {
   const dispatch = useAppDispatch();
   const loginUser = async (userInfo: UserCredentials) => {
+    dispatch(setIsLoadingActionCreator);
     const response = await axios.post(`${REACT_APP_URL}/users/login`, userInfo);
 
     const { token } = (await response.data) as LoginResponse;
@@ -25,6 +30,8 @@ const useUser = () => {
       username,
     };
     dispatch(loginUserActionCreator(userLogged));
+
+    dispatch(unsetIsLoadingActionCreator);
 
     await AsyncStorage.setItem("token", token);
   };

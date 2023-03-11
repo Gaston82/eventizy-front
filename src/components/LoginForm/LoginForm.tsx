@@ -29,8 +29,6 @@ const LoginForm = (): JSX.Element => {
       password,
     };
     await loginUser(loggUser);
-    setPassword("");
-    setUsername("");
   };
 
   return (
