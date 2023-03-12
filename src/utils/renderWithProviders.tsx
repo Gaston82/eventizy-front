@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { type PreloadedState } from "@reduxjs/toolkit";
 import React, { type PropsWithChildren } from "react";
 import { setupStore, type RootState, store } from "../store/store";
+import { NavigationContainer } from "@react-navigation/native";
 
 const renderWithProviders = (
   ui: React.ReactElement,
@@ -11,7 +12,9 @@ const renderWithProviders = (
   const testStore = preloadedState ? setupStore(preloadedState) : store;
 
   const Wrapper = ({ children }: PropsWithChildren): JSX.Element => (
-    <Provider store={testStore}>{children}</Provider>
+    <Provider store={testStore}>
+      <NavigationContainer>{children}</NavigationContainer>
+    </Provider>
   );
 
   return render(ui, { wrapper: Wrapper });
