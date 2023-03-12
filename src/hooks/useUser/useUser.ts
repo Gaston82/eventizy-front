@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 import decodeToken from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { REACT_APP_URL } from "@env";
@@ -17,6 +18,7 @@ import {
 
 const useUser = () => {
   const dispatch = useAppDispatch();
+
   const loginUser = async (userInfo: UserCredentials) => {
     dispatch(setIsLoadingActionCreator);
     const response = await axios.post(`${REACT_APP_URL}/users/login`, userInfo);
@@ -32,7 +34,6 @@ const useUser = () => {
     dispatch(loginUserActionCreator(userLogged));
 
     dispatch(unsetIsLoadingActionCreator);
-
     await AsyncStorage.setItem("token", token);
   };
 
