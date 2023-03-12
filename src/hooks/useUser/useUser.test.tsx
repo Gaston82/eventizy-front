@@ -51,9 +51,8 @@ describe("Given the useUser hook", () => {
           return <Provider store={mockStore}>{children}</Provider>;
         },
       });
-
       await loginUser(mockUserCredentials);
-      expect(dispatchSpy.mock.calls[0][0]).toStrictEqual(loginMockUser);
+      expect(dispatchSpy).toHaveBeenCalledWith(loginMockUser);
     });
   });
 });
