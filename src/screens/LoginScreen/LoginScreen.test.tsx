@@ -1,11 +1,11 @@
 import React from "react";
 import { screen } from "@testing-library/react-native";
-import renderWithProviders from "../utils/renderWithProviders";
-import LoginScreen from "./LoginScreen/LoginScreen";
+import renderWithProviders from "../../utils/renderWithProviders";
+import LoginScreen from "./LoginScreen";
 
 const mockedLoginUser = jest.fn();
 
-jest.mock("../hooks/useUser/useUser", () => () => ({
+jest.mock("../../hooks/useUser/useUser", () => () => ({
   loginUser: mockedLoginUser,
 }));
 

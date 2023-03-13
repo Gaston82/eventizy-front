@@ -20,7 +20,7 @@ const useUser = () => {
   const dispatch = useAppDispatch();
 
   const loginUser = async (userInfo: UserCredentials) => {
-    dispatch(setIsLoadingActionCreator);
+    dispatch(setIsLoadingActionCreator());
     const response = await axios.post(`${REACT_APP_URL}/users/login`, userInfo);
 
     const { token } = (await response.data) as LoginResponse;
@@ -33,7 +33,7 @@ const useUser = () => {
     };
     dispatch(loginUserActionCreator(userLogged));
 
-    dispatch(unsetIsLoadingActionCreator);
+    dispatch(unsetIsLoadingActionCreator());
     await AsyncStorage.setItem("token", token);
   };
 
