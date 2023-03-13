@@ -30,6 +30,10 @@ const uiSlice = createSlice({
       modalMessage: action.payload.modalMessage,
       showModal: true,
     }),
+    hideModal: (currentState: UiStructure) => ({
+      ...currentState,
+      showModal: false,
+    }),
   },
 });
 
@@ -38,4 +42,5 @@ export const {
   setIsLoading: setIsLoadingActionCreator,
   unsetIsLoading: unsetIsLoadingActionCreator,
   showModal: showModalActionCreator,
+  hideModal: hideModalActionCreator,
 } = uiSlice.actions;

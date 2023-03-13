@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Alert, Modal, Text, Pressable, View } from "react-native";
-import { useAppSelector } from "../../store/hooks";
+import { hideModalActionCreator } from "../../store/features/ui/uiSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ModalCardStyles from "./ModalCardStyles";
 
 const ModalCard = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const [modalVisible, setModalVisible] = useState(true);
 
   const { modalMessage } = useAppSelector((state) => state.ui);
 
@@ -26,7 +29,7 @@ const ModalCard = () => {
               <Pressable
                 style={[ModalCardStyles.button, ModalCardStyles.buttonClose]}
                 onPress={() => {
-                  setModalVisible(!modalVisible);
+                  dispatch(hideModalActionCreator());
                 }}
               >
                 <Text style={ModalCardStyles.textStyle}>Hide Modal</Text>

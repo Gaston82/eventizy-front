@@ -18,6 +18,7 @@ const StackNavigator = () => {
         flex: 1,
       }}
     >
+      {showModal && <ModalCard />}
       {isLoading && <Loader />}
       {showModal && <ModalCard />}
       <Stack.Navigator initialRouteName="Login">
