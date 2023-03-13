@@ -13,6 +13,7 @@ import {
 } from "../../types";
 import {
   setIsLoadingActionCreator,
+  showModalActionCreator,
   unsetIsLoadingActionCreator,
 } from "../../store/features/ui/uiSlice";
 
@@ -21,20 +22,34 @@ const useUser = () => {
 
   const loginUser = async (userInfo: UserCredentials) => {
     dispatch(setIsLoadingActionCreator());
-    const response = await axios.post(`${REACT_APP_URL}/users/login`, userInfo);
 
-    const { token } = (await response.data) as LoginResponse;
+    try {
+      const response = await axios.post(
+        `${REACT_APP_URL}/users/login`,
+        userInfo
+      );
 
-    const { id, username }: CustomTokenPayload = await decodeToken(token);
-    const userLogged: User = {
-      id,
-      token,
-      username,
-    };
-    dispatch(loginUserActionCreator(userLogged));
+      const { token } = (await response.data) as LoginResponse;
 
-    dispatch(unsetIsLoadingActionCreator());
-    await AsyncStorage.setItem("token", token);
+      const { id, username }: CustomTokenPayload = await decodeToken(token);
+      const userLogged: User = {
+        id,
+        token,
+        username,
+      };
+      dispatch(loginUserActionCreator(userLogged));
+      await AsyncStorage.setItem("token", token);
+      dispatch(unsetIsLoadingActionCreator());
+    } catch {
+      dispatch(unsetIsLoadingActionCreator());
+      dispatch(
+        showModalActionCreator({
+          isError: true,
+          modalMessage: "Something went wrong",
+          showModal: true,
+        })
+      );
+    }
   };
 
   return {

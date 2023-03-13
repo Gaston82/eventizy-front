@@ -45,6 +45,7 @@ const LoginForm = (): JSX.Element => {
           placeholder="Enter username"
           placeholderTextColor="#948C8C"
           testID="username"
+          autoCapitalize="none"
         />
       </View>
       <View>
