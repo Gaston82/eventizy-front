@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native/types";
+import { StyleSheet } from "react-native";
+import colorsStyle from "../../styles/styles";
 
 const ModalCardStyles = StyleSheet.create({
   centeredView: {
@@ -8,8 +9,10 @@ const ModalCardStyles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
+    position: "absolute",
+    zIndex: 1,
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: colorsStyle.mainColor,
     borderRadius: 20,
     padding: 35,
     alignItems: "center",

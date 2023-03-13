@@ -4,7 +4,7 @@ import decodeToken from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { REACT_APP_URL } from "@env";
 import { loginUserActionCreator } from "../../store/features/userSlice/userSlice";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import {
   type LoginResponse,
   type UserCredentials,
@@ -19,9 +19,6 @@ import {
 
 const useUser = () => {
   const dispatch = useAppDispatch();
-  const { isError, modalMessage, showModal } = useAppSelector(
-    (state) => state.ui
-  );
 
   const loginUser = async (userInfo: UserCredentials) => {
     dispatch(setIsLoadingActionCreator());
@@ -44,6 +41,7 @@ const useUser = () => {
       await AsyncStorage.setItem("token", token);
       dispatch(unsetIsLoadingActionCreator());
     } catch {
+      dispatch(unsetIsLoadingActionCreator());
       dispatch(
         showModalActionCreator({
           isError: true,
