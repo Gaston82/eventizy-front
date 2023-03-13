@@ -20,6 +20,7 @@ const StackNavigator = () => {
     >
       {showModal && <ModalCard />}
       {isLoading && <Loader />}
+      {showModal && <ModalCard />}
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
       </Stack.Navigator>
