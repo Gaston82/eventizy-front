@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native/types";
+import { StyleSheet } from "react-native";
 
 const ModalCardStyles = StyleSheet.create({
   centeredView: {

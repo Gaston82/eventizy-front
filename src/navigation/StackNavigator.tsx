@@ -4,10 +4,11 @@ import LoginScreen from "../screens/LoginScreen/LoginScreen";
 import { useAppSelector } from "../store/hooks";
 import { SafeAreaView } from "react-native";
 import Loader from "../components/Loader/Loader";
+import ModalCard from "../components/Modal/Modal";
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
-  const { isLoading } = useAppSelector((state) => state.ui);
+  const { isLoading, showModal } = useAppSelector((state) => state.ui);
 
   return (
     <SafeAreaView
@@ -17,6 +18,7 @@ const StackNavigator = () => {
         flex: 1,
       }}
     >
+      {showModal && <ModalCard />}
       {isLoading && <Loader />}
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
