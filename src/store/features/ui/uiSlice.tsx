@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type UiStructure from "./types";
+import { type ModalStructure } from "./types";
 
 const initialState: UiStructure = {
   isLoading: false,
@@ -20,6 +21,15 @@ const uiSlice = createSlice({
       ...currentState,
       isLoading: false,
     }),
+    showModal: (
+      currentState: UiStructure,
+      action: PayloadAction<ModalStructure>
+    ) => ({
+      ...currentState,
+      isError: true,
+      modalMessage: action.payload.modalMessage,
+      showModal: true,
+    }),
   },
 });
 
@@ -27,4 +37,5 @@ export const uiReducer = uiSlice.reducer;
 export const {
   setIsLoading: setIsLoadingActionCreator,
   unsetIsLoading: unsetIsLoadingActionCreator,
+  showModal: showModalActionCreator,
 } = uiSlice.actions;

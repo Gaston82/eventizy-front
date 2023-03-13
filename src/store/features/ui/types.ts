@@ -5,4 +5,10 @@ interface UiStructure {
   modalMessage: string;
 }
 
+export interface ModalStructure {
+  showModal: boolean;
+  isError: boolean;
+  modalMessage: string;
+}
+
 export default UiStructure;
