@@ -3,6 +3,9 @@ import type UiStructure from "./types";
 
 const initialState: UiStructure = {
   isLoading: false,
+  isError: false,
+  modalMessage: "",
+  showModal: false,
 };
 
 const uiSlice = createSlice({
