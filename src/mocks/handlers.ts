@@ -32,4 +32,10 @@ const handlers = [
   ),
 ];
 
+export const errorHandlers = [
+  rest.post(`${REACT_APP_URL}/users/login`, async (req, res, ctx) =>
+    res(ctx.status(400))
+  ),
+];
+
 export default handlers;

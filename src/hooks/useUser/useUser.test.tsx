@@ -6,6 +6,7 @@ import useUser from "./useUser";
 import { type UserCredentials, type CustomTokenPayload } from "../../types";
 import { loginUserActionCreator } from "../../store/features/userSlice/userSlice";
 import Wrapper from "../../mocks/Wrapper";
+import { type ModalStructure } from "../../store/features/ui/types";
 
 jest.mock("@react-native-async-storage/async-storage", () => ({
   setItem: jest.fn(),
@@ -52,6 +53,31 @@ describe("Given the useUser hook", () => {
 
       await loginUser(mockUserCredentials);
       expect(dispatchSpy).toHaveBeenCalledWith(loginMockUser);
+    });
+  });
+
+  describe("When loginUser recieves tehe username 'jose' and an incorrect password", () => {
+    test("Then it should call the dispatch method with showModalActionCreator with an error message", async () => {
+      const {
+        result: {
+          current: { loginUser },
+        },
+      } = renderHook(() => useUser(), {
+        wrapper: Wrapper,
+      });
+
+      const user: UserCredentials = {
+        username: "jose",
+        password: "tgadxhy6749ijk",
+      };
+
+      const mockModal: ModalStructure = {
+        isError: true,
+        modalMessage: "Something went wrong",
+        showModal: true,
+      };
+
+      await loginUser(user);
     });
   });
 });
