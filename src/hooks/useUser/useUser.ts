@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useNavigation } from "@react-navigation/native";
 import decodeToken from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { REACT_APP_URL } from "@env";
