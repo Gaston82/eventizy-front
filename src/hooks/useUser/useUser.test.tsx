@@ -1,11 +1,11 @@
 import React from "react";
 import decodeToken from "jwt-decode";
 import { renderHook } from "@testing-library/react";
-import { Provider } from "react-redux";
 import { setupStore, store } from "../../store/store";
 import useUser from "./useUser";
 import { type UserCredentials, type CustomTokenPayload } from "../../types";
 import { loginUserActionCreator } from "../../store/features/userSlice/userSlice";
+import Wrapper from "../../mocks/Wrapper";
 
 jest.mock("@react-native-async-storage/async-storage", () => ({
   setItem: jest.fn(),
@@ -38,7 +38,7 @@ describe("Given the useUser hook", () => {
       });
 
       const mockStore = setupStore();
-      const dispatchSpy = jest.spyOn(mockStore, "dispatch");
+      const dispatchSpy = jest.spyOn(store, "dispatch");
       (decodeToken as jest.MockedFunction<typeof decodeToken>).mockReturnValue(
         tokenPayload
       );
@@ -47,10 +47,9 @@ describe("Given the useUser hook", () => {
           current: { loginUser },
         },
       } = renderHook(() => useUser(), {
-        wrapper({ children }) {
-          return <Provider store={mockStore}>{children}</Provider>;
-        },
+        wrapper: Wrapper,
       });
+
       await loginUser(mockUserCredentials);
       expect(dispatchSpy).toHaveBeenCalledWith(loginMockUser);
     });

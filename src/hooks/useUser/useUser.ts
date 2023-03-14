@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { REACT_APP_URL } from "@env";
 import { loginUserActionCreator } from "../../store/features/userSlice/userSlice";
 import { useAppDispatch } from "../../store/hooks";
+import { useNavigation } from "@react-navigation/native";
 import {
   type LoginResponse,
   type UserCredentials,
@@ -18,6 +19,7 @@ import {
 
 const useUser = () => {
   const dispatch = useAppDispatch();
+  const navigation = useNavigation();
 
   const loginUser = async (userInfo: UserCredentials) => {
     dispatch(setIsLoadingActionCreator());
@@ -38,6 +40,8 @@ const useUser = () => {
       };
       dispatch(loginUserActionCreator(userLogged));
       await AsyncStorage.setItem("token", token);
+      navigation.navigate("Home");
+
       dispatch(unsetIsLoadingActionCreator());
     } catch {
       dispatch(unsetIsLoadingActionCreator());
