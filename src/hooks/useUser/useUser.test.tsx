@@ -7,6 +7,9 @@ import { type UserCredentials, type CustomTokenPayload } from "../../types";
 import { loginUserActionCreator } from "../../store/features/userSlice/userSlice";
 import Wrapper from "../../mocks/Wrapper";
 import { type ModalStructure } from "../../store/features/ui/types";
+import server from "../../mocks/server";
+import { errorHandlers } from "../../mocks/handlers";
+import { showModalActionCreator } from "../../store/features/ui/uiSlice";
 
 jest.mock("@react-native-async-storage/async-storage", () => ({
   setItem: jest.fn(),
@@ -57,6 +60,9 @@ describe("Given the useUser hook", () => {
   });
 
   describe("When loginUser recieves tehe username 'jose' and an incorrect password", () => {
+    beforeEach(() => {
+      server.resetHandlers(...errorHandlers);
+    });
     test("Then it should call the dispatch method with showModalActionCreator with an error message", async () => {
       const {
         result: {
@@ -78,6 +84,10 @@ describe("Given the useUser hook", () => {
       };
 
       await loginUser(user);
+
+      expect(spyDispatch).toHaveBeenCalledWith(
+        showModalActionCreator(mockModal)
+      );
     });
   });
 });
