@@ -1,4 +1,4 @@
-interface UiStructure {
+export interface UiStructure {
   isLoading: boolean;
   showModal: boolean;
   isError: boolean;
