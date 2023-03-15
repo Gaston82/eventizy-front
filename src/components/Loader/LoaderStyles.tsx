@@ -3,10 +3,12 @@ import colorsStyle from "../../styles/styles";
 
 const LoaderStyles = StyleSheet.create({
   container: {
-    flex: 1,
+    position: "relative",
+    height: "100%",
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colorsStyle.mainColor,
+    backgroundColor: "rgba(255,255,255,0.85)",
   },
   indicator: {
     color: "black",
