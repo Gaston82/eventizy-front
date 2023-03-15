@@ -13,6 +13,7 @@ afterEach(() => {
 
 const mockEvents: Events = [
   {
+    id: "",
     name: "Summer Music Festival",
     location: "Costa Brava Beach",
     image: "summer_music_festival.jpg",
