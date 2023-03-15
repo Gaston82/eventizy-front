@@ -27,6 +27,7 @@ export interface CustomTokenPayload extends JwtPayload {
 }
 
 export interface Event {
+  id: string;
   name: string;
   location: string;
   image: string;
