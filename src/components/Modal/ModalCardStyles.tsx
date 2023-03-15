@@ -3,10 +3,12 @@ import colorsStyle from "../../styles/styles";
 
 const ModalCardStyles = StyleSheet.create({
   centeredView: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    width: "100%",
+    height: "100%",
+    position: "relative",
+    backgroundColor: "rgba(255,255,255,0.3)",
   },
   modalView: {
     position: "absolute",
@@ -30,9 +32,7 @@ const ModalCardStyles = StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
+
   buttonClose: {
     backgroundColor: "#2196F3",
   },
@@ -44,6 +44,7 @@ const ModalCardStyles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+    fontSize: 21,
   },
 });
 
