@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
-import { Text, SafeAreaView } from "react-native";
+import { SafeAreaView } from "react-native";
+import EventList from "../../components/EventList/EventList";
 import useEvents from "../../hooks/useEvents/useEvents";
 import { useAppSelector } from "../../store/hooks";
 
@@ -17,7 +18,7 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView>
-      <Text>Home</Text>
+      <EventList events={events} />
     </SafeAreaView>
   );
 };
