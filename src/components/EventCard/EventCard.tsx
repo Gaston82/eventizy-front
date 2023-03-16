@@ -1,22 +1,23 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 import { type Event } from "../../types";
+import EventCardStyles from "./EventCardStyles";
 
 interface EventCardProps {
   event: Event;
 }
 
-const EventCard = ({ event: { name, image, location } }: EventCardProps) => (
+const EventCard = ({
+  event: { id, name, image, location },
+}: EventCardProps) => (
   <>
-    <View>
+    <View style={EventCardStyles.container}>
+      <Image source={{ uri: image }} style={EventCardStyles.image}></Image>
       <View>
-        <Image source={{ uri: image }}></Image>
+        <Text style={EventCardStyles.title}>{name}</Text>
       </View>
       <View>
-        <Text>{name}</Text>
-      </View>
-      <View>
-        <Text>{location}</Text>
+        <Text style={EventCardStyles.textLocation}>{location}</Text>
       </View>
     </View>
   </>

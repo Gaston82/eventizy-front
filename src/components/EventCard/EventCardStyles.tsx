@@ -4,10 +4,11 @@ const EventCardStyles = StyleSheet.create({
   container: {
     display: "flex",
     width: "100%",
-    height: 200,
+    height: 300,
     marginBottom: 80,
     borderRadius: 25,
     alignItems: "center",
+    paddingVertical: 20,
   },
   image: {
     width: "90%",

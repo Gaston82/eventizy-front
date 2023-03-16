@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import useUser from "../../hooks/useUser/useUser";
 import LoginFormStyles from "./LoginFormStyles";
 
@@ -32,7 +26,7 @@ const LoginForm = (): JSX.Element => {
   };
 
   return (
-    <SafeAreaView style={LoginFormStyles.container}>
+    <View style={LoginFormStyles.container}>
       <Text style={LoginFormStyles.title} testID={"Login"}>
         Login
       </Text>
@@ -63,7 +57,7 @@ const LoginForm = (): JSX.Element => {
           <Text style={LoginFormStyles.textButton}>Log in</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
