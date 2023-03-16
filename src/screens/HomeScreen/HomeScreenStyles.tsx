@@ -5,6 +5,9 @@ const HomeScreenStyles = StyleSheet.create({
     textAlign: "center",
     fontSize: 36,
   },
+  container: {
+    paddingVertical: 40,
+  },
 });
 
 export default HomeScreenStyles;
