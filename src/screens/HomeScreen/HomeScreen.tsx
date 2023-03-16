@@ -4,6 +4,7 @@ import { Text, SafeAreaView } from "react-native";
 import EventList from "../../components/EventList/EventList";
 import useEvents from "../../hooks/useEvents/useEvents";
 import { useAppSelector } from "../../store/hooks";
+import HomeScreenStyles from "./HomeScreenStyles";
 
 const HomeScreen = () => {
   const { getEvents } = useEvents();
@@ -19,7 +20,9 @@ const HomeScreen = () => {
   return (
     <>
       <SafeAreaView>
-        <Text testID="title">Eventizi</Text>
+        <Text testID="title" style={HomeScreenStyles.title}>
+          Eventizi
+        </Text>
         <EventList events={events} />
       </SafeAreaView>
     </>
