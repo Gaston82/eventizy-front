@@ -38,9 +38,7 @@ const useEvents = () => {
     dispatch(setIsLoadingActionCreator());
 
     try {
-      const eventToDelete = await axios.delete(
-        `${REACT_APP_URL}/events/:${id}`
-      );
+      await axios.delete(`${REACT_APP_URL}/events/:${id}`);
       dispatch(deleteEventByIdActionCreator(id));
       dispatch(unsetIsLoadingActionCreator());
     } catch {

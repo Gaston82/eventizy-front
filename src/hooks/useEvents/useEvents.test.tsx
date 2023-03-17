@@ -1,6 +1,9 @@
 import { renderHook } from "@testing-library/react-native";
 import Wrapper from "../../mocks/Wrapper";
-import { loadEventsActionCreators } from "../../store/features/eventSlice/eventSlice";
+import {
+  loadEventsActionCreators,
+  deleteEventByIdActionCreator,
+} from "../../store/features/eventSlice/eventSlice";
 import { store } from "../../store/store";
 import { type Events } from "../../types";
 import useEvents from "./useEvents";
@@ -36,6 +39,22 @@ describe("Given the useEvents hook", () => {
 
       expect(spyDispatch).toHaveBeenCalledWith(
         loadEventsActionCreators(mockEvents)
+      );
+    });
+  });
+
+  describe("When the function deleteEventById is called", () => {
+    const mockEventId = "20269578";
+    test("Then dispatch function should be call with the deleteEventByIdActionCreator function", async () => {
+      const {
+        result: {
+          current: { deleteEventById },
+        },
+      } = renderHook(() => useEvents(), { wrapper: Wrapper });
+      await deleteEventById(mockEvents[0].id);
+
+      expect(spyDispatch).toHaveBeenCalledWith(
+        deleteEventByIdActionCreator(mockEvents[0].id)
       );
     });
   });
