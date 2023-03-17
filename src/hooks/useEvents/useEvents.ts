@@ -7,7 +7,10 @@ import {
   showModalActionCreator,
   unsetIsLoadingActionCreator,
 } from "../../store/features/ui/uiSlice";
-import { loadEventsActionCreators } from "../../store/features/eventSlice/eventSlice";
+import {
+  deleteEventByIdActionCreator,
+  loadEventsActionCreators,
+} from "../../store/features/eventSlice/eventSlice";
 import { type EventsResponse } from "../../types";
 
 const useEvents = () => {
@@ -31,7 +34,27 @@ const useEvents = () => {
     }
   };
 
-  return { getEvents };
+  const deleteEventById = async (id: string) => {
+    dispatch(setIsLoadingActionCreator());
+
+    try {
+      const eventToDelete = await axios.delete(
+        `${REACT_APP_URL}/events/:${id}`
+      );
+      dispatch(deleteEventByIdActionCreator(id));
+      dispatch(unsetIsLoadingActionCreator());
+    } catch {
+      dispatch(
+        showModalActionCreator({
+          isError: true,
+          modalMessage: "Something went wrong",
+          showModal: true,
+        })
+      );
+    }
+  };
+
+  return { getEvents, deleteEventById };
 };
 
 export default useEvents;
