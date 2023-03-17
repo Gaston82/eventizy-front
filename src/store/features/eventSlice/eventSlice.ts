@@ -14,9 +14,7 @@ const eventSlice = createSlice({
     deleteEventById: (
       currentState: Events,
       action: PayloadAction<string>
-    ): Events => ({
-      ...currentState.filter((event) => event.id !== action.payload),
-    }),
+    ): Events => currentState.filter((event) => event.id !== action.payload),
   },
 });
 
