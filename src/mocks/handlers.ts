@@ -31,6 +31,18 @@ const handlers = [
       })
     )
   ),
+  rest.delete(`${REACT_APP_URL}/events/:id`, async (req, res, ctx) =>
+    res(
+      ctx.status(200),
+      ctx.json({
+        events: [
+          {
+            message: "Event succefully deleted",
+          },
+        ],
+      })
+    )
+  ),
 ];
 
 export const errorHandlers = [
