@@ -11,8 +11,17 @@ const eventSlice = createSlice({
       currentState: Events,
       action: PayloadAction<Events>
     ): Events => [...action.payload],
+    deleteEventById: (
+      currentState: Events,
+      action: PayloadAction<string>
+    ): Events => ({
+      ...currentState.filter((event) => event.id !== action.payload),
+    }),
   },
 });
 
 export const eventReducer = eventSlice.reducer;
-export const { loadEvents: loadEventsActionCreators } = eventSlice.actions;
+export const {
+  loadEvents: loadEventsActionCreators,
+  deleteEventById: deleteEventByIdActionCreator,
+} = eventSlice.actions;
