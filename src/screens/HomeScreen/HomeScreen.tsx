@@ -19,7 +19,7 @@ const HomeScreen = () => {
 
   return (
     <>
-      <View>
+      <View style={HomeScreenStyles.container}>
         <Text testID="title" style={HomeScreenStyles.title}>
           Eventizi
         </Text>
