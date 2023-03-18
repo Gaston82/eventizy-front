@@ -18,7 +18,7 @@ const handlers = [
       ctx.json({
         events: [
           {
-            id: "",
+            id: "240719vida",
             name: "Summer Music Festival",
             location: "Costa Brava Beach",
             image: "summer_music_festival.jpg",
@@ -31,15 +31,11 @@ const handlers = [
       })
     )
   ),
-  rest.delete(`${REACT_APP_URL}/events/:id`, async (req, res, ctx) =>
+  rest.delete(`${REACT_APP_URL}/events/240719vida`, async (req, res, ctx) =>
     res(
       ctx.status(200),
       ctx.json({
-        events: [
-          {
-            message: "Event succefully deleted",
-          },
-        ],
+        message: "Event succefully deleted",
       })
     )
   ),

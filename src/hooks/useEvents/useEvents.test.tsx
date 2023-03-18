@@ -16,7 +16,7 @@ afterEach(() => {
 
 const mockEvents: Events = [
   {
-    id: "",
+    id: "240719vida",
     name: "Summer Music Festival",
     location: "Costa Brava Beach",
     image: "summer_music_festival.jpg",
@@ -44,7 +44,6 @@ describe("Given the useEvents hook", () => {
   });
 
   describe("When the function deleteEventById is called", () => {
-    const mockEventId = "20269578";
     test("Then dispatch function should be call with the deleteEventByIdActionCreator function", async () => {
       const {
         result: {
