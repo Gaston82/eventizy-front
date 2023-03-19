@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { REACT_APP_URL } from "@env";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   setIsLoadingActionCreator,
   showModalActionCreator,
@@ -15,6 +15,7 @@ import { type EventsResponse } from "../../types";
 
 const useEvents = () => {
   const dispatch = useAppDispatch();
+  const token = useAppSelector((state) => state.user.token);
 
   const getEvents = async () => {
     dispatch(setIsLoadingActionCreator());
@@ -38,7 +39,12 @@ const useEvents = () => {
     dispatch(setIsLoadingActionCreator());
 
     try {
-      await axios.delete(`${REACT_APP_URL}/events/:${id}`);
+      await axios.delete(`${REACT_APP_URL}/events/${id}`, {
+        headers: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          Authorization: `Bearer ${token}`,
+        },
+      });
       dispatch(deleteEventByIdActionCreator(id));
       dispatch(unsetIsLoadingActionCreator());
     } catch {

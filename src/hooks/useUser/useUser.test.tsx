@@ -23,6 +23,18 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
+const mockedNavigate = jest.fn();
+
+jest.mock("@react-navigation/native", () => {
+  const actualNav = jest.requireActual("@react-navigation/native");
+  return {
+    ...actualNav,
+    useNavigation: () => ({
+      navigate: mockedNavigate,
+    }),
+  };
+});
+
 describe("Given the useUser hook", () => {
   describe("When it loginUser action recieves username 'jose' and a password 'larraldejose78' ", () => {
     test("Then it should call the dispatch method with the loginuserActionCreator", async () => {

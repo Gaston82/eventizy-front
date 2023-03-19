@@ -23,9 +23,7 @@ const EventCardStyles = StyleSheet.create({
     fontSize: 18,
   },
   icon: {
-    fontSize: 51,
-    color: "red",
-    backgroundColor: "green",
+    backgroundColor: "white",
   },
 });
 
