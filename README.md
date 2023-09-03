@@ -16,3 +16,11 @@ Puedes clonar este repositorio utilizando el siguiente comando:
 ```bash
 git clone <URL_DEL_REPOSITORIO>
 ```
+
+Luego, instala las dependencias necesarias ejecutando:
+
+npm install
+
+## Instalación
+
+npm start
