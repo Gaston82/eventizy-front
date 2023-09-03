@@ -21,6 +21,6 @@ Luego, instala las dependencias necesarias ejecutando:
 
 npm install
 
-## Instalación
+## Uso
 
 npm start
